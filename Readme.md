@@ -7,6 +7,13 @@ Webseite: https://symphony.com
 
 Unter /home/student/symphony/web ist das Verzeichnis, welches unter http://symphony ausgeliefert wird. 
 
+PHP Sqlite installieren: 
+
+```
+sudo apt-get install php5-sqlite
+```
+
+
 
 ## Installation Symphony 
 
