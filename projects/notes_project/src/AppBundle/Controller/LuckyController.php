@@ -4,16 +4,17 @@ namespace  AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * First Controller. 
+ * First Controller 
  * 
- * Can be called under 
- * 
+ * Tutorial: https://symfony.com/doc/current/book/page_creation.html
+ *   
  * @author Norman Suesstrunk 
  *
  */
-class LuckyController
+class LuckyController extends Controller
 {
     /**
      * Return plain html
@@ -22,11 +23,32 @@ class LuckyController
      */
     public function luckyNumber()
     {
-        $number = rand(0, 100);
-
-        return new Response(
-        	'<html><body>Lucky number: '.$number.'</body></html>'
-        );
+        $luckyNumber = rand(0, 100);
+        
+        /**
+         * how to get the twig service.
+         * but there is a shortcut version for this
+         */
+        /*
+        // get the twig templating service 
+        $twing_engine = $this->container->get('templating');         
+        // render the template 
+        $html = $twing_engine->render('lucky/number.html.twig', array('luckyNumber'=> $number)); 
+		*/
+        
+        
+        $html = $this->render(
+        		'lucky/number.html.twig',
+        		array('luckyNumber' => $luckyNumber))
+        ->getContent(); // get content is needed otherwise the header will be printed to the page too
+        
+        // get a logger and debug the local variables 
+        /*
+        $logger = $this->get('logger');
+        $logger->debug('Local Variables: ', get_defined_vars());
+        */
+        
+        return new Response($html);
     }
  	
     /**
@@ -43,7 +65,7 @@ class LuckyController
     
     
     /**
-     * Example with parameter in url 
+     * Example with parameter in url (Dynamic URL)
      * 
      * @Route ("/lucky/numberCount/{count}")
      */

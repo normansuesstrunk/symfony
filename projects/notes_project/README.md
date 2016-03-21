@@ -45,4 +45,17 @@ php bin/console debug:route
   app_lucky_apiluckynumber   ANY      ANY      ANY    /api/lucky/number                  
  -------------------------- -------- -------- ------ -----------------------------------
  ```
+
+### Dynamic Routing Pattern
+
+Implementiert und Aufrufbar unter http://127.0.0.1:8000/api/lucky/numberCount/5, generiert dann 5 Zufallszahlen
+
+### Templating
+
+Symfony benutzt Twig als Template Engine
+
+
+
+
+
 ## Datenbank
