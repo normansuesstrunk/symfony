@@ -55,7 +55,39 @@ Implementiert und Aufrufbar unter http://127.0.0.1:8000/api/lucky/numberCount/5,
 Symfony benutzt Twig als Template Engine
 
 
+# Configuration
 
+Ausgeben aller Framework Bundles configs:
+
+```
+$ php bin/console config:dump-reference framework
+```
 
 
 ## Datenbank
+
+https://symfony.com/doc/current/book/doctrine.html
+
+Install php postgres support:
+```
+sudo apt-get install php5-pgsql
+```
+Anpassen config file  app/config/config.yml für postgres datenbank:
+
+```
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_pgsql
+        ...
+```
+
+Löschen / Anlegen der Datenbank:
+
+```
+$ php bin/console doctrine:database:drop --force
+$ php bin/console doctrine:database:create
+```
+
+
+### Setting up Database for UTF 8
