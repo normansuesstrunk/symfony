@@ -40,6 +40,26 @@ class LuckyController
     	
     	return new Response(json_encode($data), 200, array('Content-Type' => 'application/json'));
     }
+    
+    
+    /**
+     * Example with parameter in url 
+     * 
+     * @Route ("/lucky/numberCount/{count}")
+     */
+    public function luckyNumberCount($count) {
+    	$numbers = array();
+    	
+    	for($i=0; $i < $count; $i++) {
+    		$numbers[] = rand(0,100);
+    	}
+    	$numbersList = implode(', ', $numbers);
+    	
+    	return new Response('<html><body>'.$numbersList.'</body></html>');
+    	
+    }
+    
+    
  
 }
 
