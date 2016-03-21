@@ -104,3 +104,49 @@ $ php bin/console doctrine:schema:update --force
 ```
 
 Controller AppBundle\Controller\NoteController angelegt, welcher unter http://127.0.0.1:8000/note/create aufgerufen werden kann.
+
+# AngularJS als Frontend Framework
+
+Für das Management von Abhängigkeiten der Frontend-Bibliotheken (AngularJS, Bootstrap etc) wird bower verwendet.
+
+Bower installieren:
+
+```
+sudo npm install -g bower
+```
+
+Als Ausgabeverzeichnis von Bower web/assets/vendor/ konfigurieren -> Anlegen der Datei /home/[user]/git/symfony/projects/notes-project/.bowerrc mit Inhalt:
+
+```
+{
+    "directory": "web/assets/vendor/"
+}
+```
+
+Datei /home/[user]/git/symfony/projects/notes-project/bower.json anlegen, welche die Abhängigkeiten definiert:
+
+```
+{
+  "name": "notes_project",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-mocks": "1.4.x",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.1.1"
+  }
+}
+```
+
+Abhängigkeiten installieren:
+
+```
+bower install
+```
