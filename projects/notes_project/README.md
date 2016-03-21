@@ -82,6 +82,8 @@ doctrine:
         ...
 ```
 
+Falls der integrierte Server läuft, muss dieser gestoppt und wieder gestartet werden damit die Postgres-Verbindung dann auch läuft.
+
 Löschen / Anlegen der Datenbank:
 
 ```
@@ -89,5 +91,16 @@ $ php bin/console doctrine:database:drop --force
 $ php bin/console doctrine:database:create
 ```
 
+Gesteuertes Anlegen von Entities:
 
-### Setting up Database for UTF 8
+```
+$ php bin/console doctrine:generate:entity
+```
+
+Erzeugen der Tabellen wenn die Entities (PHP-Klassen) erzeugt wurden:
+
+```
+$ php bin/console doctrine:schema:update --force
+```
+
+Controller AppBundle\Controller\NoteController angelegt, welcher unter http://127.0.0.1:8000/note/create aufgerufen werden kann.
