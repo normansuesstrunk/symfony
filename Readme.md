@@ -1,13 +1,13 @@
-# Symphony 
+# Symphony
 
 
 Webseite: https://symphony.com
 
-## Konfiguration VM 
+## Konfiguration VM
 
-Unter /home/student/symphony/web ist das Verzeichnis, welches unter http://symphony ausgeliefert wird. 
+Unter /home/student/symphony/web ist das Verzeichnis, welches unter http://symphony ausgeliefert wird.
 
-PHP Sqlite installieren: 
+PHP Sqlite installieren:
 
 ```
 sudo apt-get install php5-sqlite
@@ -15,7 +15,7 @@ sudo apt-get install php5-sqlite
 
 
 
-## Installation Symphony 
+## Installation Symphony
 
 Folgende Anleitung benutzt: https://symfony.com/doc/current/book/installation.html
 
@@ -26,15 +26,15 @@ $ sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
 $ sudo chmod a+x /usr/local/bin/symfony
 ```
 
-### Anlegen des ersten Symphony Projektes 
+### Anlegen des ersten Symphony Projektes
 
-Im Verzeichnis /home/student/symphony/projects folgenden Befehl ausführen: 
+Im Verzeichnis /home/student/symphony/projects folgenden Befehl ausführen:
 
 ```
 symfony new notes_project
 ```
 
-Ausgabe: 
+Ausgabe:
 
 ```
  Downloading Symfony...
@@ -71,9 +71,9 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: a42a6cff6d9a238a9559ee6fd682a36ef6656b89
-``` 
+```
 
-### Ausführen der Symfony Applikation 
+### Ausführen der Symfony Applikation
 
 Starten des Servers
 
@@ -81,16 +81,16 @@ Starten des Servers
 student@ubuntu:~/symphony/projects/notes_project$ php bin/console server:run
 ```
 
-Ausgabe: 
+Ausgabe:
 
 ```
 [OK] Server running on http://127.0.0.1:8000         
 ```
 
-Aufrufen der Webseite gibt die Startseite von Symphony aus. 
+Aufrufen der Webseite gibt die Startseite von Symphony aus.
 
 
-### Konfiguration der Webseite für den Apache Webserver 
+### Konfiguration der Webseite für den Apache Webserver
 
 Doku Link: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 
@@ -112,7 +112,7 @@ Virtual Host Config /etc/apache2/sites-available/symfony-notes-project.conf
 </VirtualHost>
 ```
 
-Berechtigungen anpassen: 
+Berechtigungen anpassen:
 
 ```
 sudo chown -R www-data:www-data notes_project/
@@ -120,8 +120,8 @@ sudo chown -R www-data:www-data notes_project/
 
 Konfiguration testen unter http://symfonynotes/config.php
 
-Gemeldetes Problem: 
-``` 
+Gemeldetes Problem:
+```
 Set the "date.timezone" setting in php.ini* (like Europe/Paris).
 ```
 
@@ -132,11 +132,24 @@ date.timezone = Europe/Zurich
 ```
 
 
-# Tutorial durchspielen 
+# Tutorial durchspielen
 
 Link: https://symfony.com/
 
 [Dokumentation direkt im Readme File des Notes Projects](projects/notes_project/README.md)
 
 
+# Symfony Cookbook
 
+https://symfony.com/doc/current/cookbook/index.html
+
+## Managing Projects in Git
+
+https://symfony.com/doc/current/cookbook/workflow/new_project_git.html
+
+
+Wenn ein Projekt ausgecheckt wird, müssen erst die Vendor-Libraries mit Composer installiert werden:
+
+```
+composer install
+```
