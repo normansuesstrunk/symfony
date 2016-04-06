@@ -8,7 +8,7 @@ Webseite: https://symphony.com
 ### Nötige Pakete installieren
 
 ```
-sudo apt-get install php5-sqlite
+sudo apt-get install php5-sqlite php5-pgsql
 ```
 
 Folgende Anleitung benutzt: https://symfony.com/doc/current/book/installation.html
@@ -53,7 +53,7 @@ Ausgabe:
 Anlegen der Postgres-Datenbank **symfony_notes_project** und die Konfiguration in app/config/parameters.yml anpassen:
 
 ```
-# This file is auto-generated during the composer install
+This file is auto-generated during the composer install
 parameters:
     database_host: 127.0.0.1
     database_port: 5432
@@ -126,6 +126,12 @@ date.timezone = Europe/Zurich
 ```
 
 Danach ist die Webseite unter http://symfonynotes/ erreichbar
+
+Damit Ich die Änderungen im Apache jeweils sehe muss der Cache geleert werden: 
+
+```
+$ php bin/console cache:clear --env=prod --no-debug
+```
 
 
 # Tutorial durchspielen

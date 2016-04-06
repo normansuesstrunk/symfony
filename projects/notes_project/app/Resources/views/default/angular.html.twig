@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Notes Administration (AngularJS){% endblock %}
+
 {% block blockheader%} Notes Administration {% endblock %}
 
 {% block headercontent %}
@@ -8,12 +10,31 @@
 
 
 {% block content %}
-<div class="starter-template">
+<div class="container">
 	<h1>Bootstrap starter template</h1>
 	<p class="lead">
 		Angular Tutorial with Symfony
 	</p>
+	
+	<!-- root of the angular application DOM--> 
+	<div> 
+		
+		<div class="row">
+			<p>Nothing here {[{'yet' + '!'}]}</p>
+		</div>
+		
+		<div class="row">
+			<h3>Angular Example with a Input Field</h3>
+			<div class="form-group">
+				<label for="name">Name:</label>
+		      	<input id="name" type="text" ng-model="name" placeholder="Enter a name here">
+		      	<p>Hello {[{name}]}!</p>
+	      	</div>
+      	</div>
+      	
+	</div>
 </div>
+
 {% endblock %}
 
 

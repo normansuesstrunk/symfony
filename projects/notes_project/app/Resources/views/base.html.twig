@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="notesApp">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,14 +17,23 @@
         <link rel="stylesheet" 
         	href=	"{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
         	
-       	<!-- include bootstrap css -->        
+       	<!-- include custom css for template -->        
         <link rel="stylesheet" 
         	href=	"{{ asset('css/jumbotron.css') }}">
   	
   		<!-- include angular js library --> 
 		<script 
 			src=	"{{ asset('assets/vendor/angular/angular.min.js') }}"></script>
-        
+			
+		<!-- include js for angular app --> 
+		<script 
+			src=	"{{ asset('js/notes.js') }}"></script>
+			
+		<!-- include angular css file --> 
+		<!--
+		<script 
+			src=	"{{ asset('assets/vendor/angular/angular-csp.css') }}"></script>
+        -->
     </head>
     <body>
     

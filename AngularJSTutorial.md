@@ -36,3 +36,31 @@ sudo npm install -g bower
 ## Running Development Webserver
 
 nptm start
+
+
+## Zusammenspiel Twig / AngularJS
+
+Problem & Solution: http://blog.shaharia.com/twig-and-angularjs-curly-braces-conflict-solution/
+
+Anlegen der Datei web/js/notes.js mit folgendem Inhalt: 
+
+```
+var app = angular.module('notesApp', []);
+
+app.config(function($interpolateProvider){
+  $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+});
+```
+
+und diese Datei einbinden in das Template (base.html.twig) und Namen für die App vergeben:  
+
+```
+<!DOCTYPE html>
+<html ng-app="notesApp">
+...
+<!-- include js for angular app -->
+<script 
+	src=	"{{ asset('js/notes.js') }}"></script>
+```
+
+
