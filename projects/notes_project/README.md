@@ -150,3 +150,5 @@ Abhängigkeiten installieren:
 ```
 bower install
 ```
+
+Ein Template angelegt für eine A ngular-Seite, erreichbar unter **http://127.0.0.1:8001/angular**

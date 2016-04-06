@@ -7,12 +7,19 @@
         
         <title>{% block title %}Welcome!{% endblock %}</title>
         
+        <style>
         {% block stylesheets %}{% endblock %}
+        </style>
+        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         
 		<!-- include bootstrap css -->        
         <link rel="stylesheet" 
         	href=	"{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+        	
+       	<!-- include bootstrap css -->        
+        <link rel="stylesheet" 
+        	href=	"{{ asset('css/jumbotron.css') }}">
   	
   		<!-- include angular js library --> 
 		<script 
@@ -42,6 +49,12 @@
 	        </div>
 	      </div>
 	    </nav>
+	    
+	    <div class="jumbotron">
+	    	<div class="container">
+	    	{% block headercontent %}{% endblock %}
+	    	</div>
+	    </div>
 	    
 		{% block content %}{% endblock %}
 		{% block javascripts %}{% endblock %}
