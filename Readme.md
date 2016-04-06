@@ -1,21 +1,15 @@
 # Symphony
 
-
 Webseite: https://symphony.com
 
-## Konfiguration VM
 
-Unter /home/student/symphony/web ist das Verzeichnis, welches unter http://symphony ausgeliefert wird.
+## Installation Symphony
 
-PHP Sqlite installieren:
+### Nötige Pakete installieren
 
 ```
 sudo apt-get install php5-sqlite
 ```
-
-
-
-## Installation Symphony
 
 Folgende Anleitung benutzt: https://symfony.com/doc/current/book/installation.html
 
@@ -131,13 +125,12 @@ Datei /etc/php5/apache2/phpini.php, Zeile 879
 date.timezone = Europe/Zurich
 ```
 
+Danach ist die Webseite unter http://symfonynotes/ erreichbar
+
 
 # Tutorial durchspielen
-
 Link: https://symfony.com/
-
 [Dokumentation direkt im Readme File des Notes Projects](projects/notes_project/README.md)
-
 
 # Symfony Cookbook
 
@@ -153,3 +146,7 @@ Wenn ein Projekt ausgecheckt wird, müssen erst die Vendor-Libraries mit Compose
 ```
 composer install
 ```
+
+## Symfony und AngularJS
+
+[Dokumentation AngularJS](AngularJSTutorial.md)
