@@ -26,3 +26,13 @@ Aus doku:
 ```
 Running npm install will also automatically use bower to download the Angular framework into the app/bower_components directory.
 ```
+
+Install the helper tools: 
+
+```
+sudo npm install -g bower
+```
+
+## Running Development Webserver
+
+nptm start

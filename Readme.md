@@ -72,7 +72,7 @@ parameters:
 Starten des Servers
 
 ```
-student@ubuntu:~/symphony/projects/notes_project$ php bin/console server:run
+student@ubuntu:~/symphony/projects/notes_project$ php bin/console server:run 127.0.0.1:8001
 ```
 
 Ausgabe:
