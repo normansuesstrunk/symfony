@@ -63,4 +63,8 @@ und diese Datei einbinden in das Template (base.html.twig) und Namen für die Ap
 	src=	"{{ asset('js/notes.js') }}"></script>
 ```
 
+## Ajax in Angular-JS
+
+http://www.java2blog.com/2016/03/angularjs-ajax-example-using-http.html
+
 

@@ -165,9 +165,7 @@ Laden der Fixtures:
 php bin/console doctrine:fixtures:load
 ```
 
-## Serializer für Entities / Objects 
 
-Link: http://symfony.com/doc/current/components/serializer.html
 
 
 

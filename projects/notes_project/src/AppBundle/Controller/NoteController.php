@@ -8,6 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Note;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\AppBundle\Entity;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Notes Controller
@@ -23,7 +29,6 @@ class NoteController extends Controller
 	 */
 	public function createNoteAction()
 	{
-		
 		// create category 
 		$category = new Category();
 		$category->setTitle("this is a category title");
@@ -73,6 +78,30 @@ class NoteController extends Controller
 		}
 	
 		// ... do something, like pass the $product object into a template
+	}
+	
+	/**
+	 * @Route("note/list")
+	 */
+	public function listNotes() {
+		// create the serializers 		
+		$encoders = array(new XmlEncoder(), new JsonEncoder());
+		$normalizers = array(new ObjectNormalizer());
+		$serializer = new Serializer($normalizers, $encoders);
+		
+		// query all objects
+		$allnotes = $this
+		->getDoctrine()
+		->getRepository('AppBundle:Note')
+		->findAll(); 		
+		
+		$jsonContent = $serializer->serialize($allnotes, 'json');
+		
+       return new Response(
+            $jsonContent,
+            200,
+            array('Content-Type' => 'application/json')
+        );	
 	}
 }
 

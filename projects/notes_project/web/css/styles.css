@@ -11,3 +11,11 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+

@@ -133,10 +133,6 @@ Damit Ich die Änderungen im Apache jeweils sehe muss der Cache geleert werden:
 $ php bin/console cache:clear --env=prod --no-debug
 ```
 
-## Entwicklungsumgebung
-
-* PHP mit Eclipse Plugin 
-* Eclipse Plugin für Twig: http://twig.dubture.com/installation/
 
 # Tutorial durchspielen
 Link: https://symfony.com/

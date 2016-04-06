@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notes Administration (AngularJS){% endblock %}
+
+{% block blockheader%} Notes Administration {% endblock %}
+
+{% block headercontent %}
+<h1>Notes Administration</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">	
+	<!-- root of the angular application DOM--> 
+	<div> 
+		<div ng-controller="NotesListController as notesList">
+			<span>
+				{[{notesList.remaining()}]} of {[{notesList.notes.length}]} 
+				remaining
+			</span>
+			
+			[ <a href="" ng-click="notesList.archive()">archive</a> ]
+			
+			<ul class="unstyled">
+				<li ng-repeat="note in notesList.notes">
+					<label class="checkbox">
+						<input type="checkbox" ng-model="note.done">
+						<span class="done-{[{note.done}]}">{[{note.title}]} <br/> {[{note.description}]}</span>
+					</label>
+				</li>
+			</ul>
+			
+			<!-- form to add new note -->
+			<form ng-submit="notesList.addNote()">
+				<input type="text" ng-model="notesList.noteTitle"  size="30"
+						placeholder="add new note (title) here">
+				<input class="btn-primary" type="submit" value="add">
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+
