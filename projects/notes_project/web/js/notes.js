@@ -11,25 +11,14 @@ app.config(function($interpolateProvider){
 
 app.controller('NotesListController', function($scope, $http) {
    
-	
-	var url = "notes.json"; 
-	
-	
 	var notesList = this;
-   
-	// global lists with notes
-	notesList.notes = [
-      {
-    	  title:'learn angular', 
-    	  description:'Begin to learn Angular',
-    	  done:true
-      },
-      {
-    	  title:'build an angular app',
-    	  description:'Build a simple Angular app with symfony',
-    	  done:false
-      }
-      ];
+	
+	// url to query all notes 
+	var url = "note/list"; 
+	// make the ajax call
+	$http.get(url).success( function(response) {  
+        notesList.notes = response;   
+    });
  
 	notesList.addNote = function() {
       notesList.notes.push(

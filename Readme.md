@@ -160,3 +160,49 @@ composer install
 ## Symfony und AngularJS
 
 [Dokumentation AngularJS](AngularJSTutorial.md)
+
+# Herunterladen & Installieren von MyRapport 
+
+Github URL: https://github.com/nitrobar/MyRapport.git
+
+Projekt klonen: 
+
+```
+git clone https://github.com/nitrobar/MyRapport.git
+```
+
+Im Verzeichniss web/my_project composer ausführen: 
+
+```
+composer install
+``` 
+
+Da können dann auch die Datenbank-Parameter angegeben werden. 
+
+Mit Doctrine die Tabellen erzeugen: 
+
+
+```
+$ php bin/console doctrine:schema:update --force
+```
+
+
+# Eclipse Notizen 
+
+## Probleme mit DLTK (Dynamic Language Toolkit)
+
+Löschen des Indexes des DLTK falls er korrupt ist: 
+
+```
+rm -rf ~/workspace/.metadata/.plugins/org.eclipse.dltk.core.index.sql.h2/*
+```
+
+Increase heap size of eclipse, Editieren von php.ini:  
+
+```
+... 
+-XX:MaxPermSize=512m
+-Xms512m
+-Xmx2024m
+```
+

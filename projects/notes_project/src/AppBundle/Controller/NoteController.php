@@ -81,6 +81,8 @@ class NoteController extends Controller
 	}
 	
 	/**
+	 * returns all entities in the note table as json
+	 * 
 	 * @Route("note/list")
 	 */
 	public function listNotes() {

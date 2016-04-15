@@ -35,10 +35,12 @@ sudo npm install -g bower
 
 ## Running Development Webserver
 
-nptm start
+```
+npm start
+```
 
 
-## Zusammenspiel Twig / AngularJS
+## Zusammenspiel Twig (aus symfony) / AngularJS
 
 Problem & Solution: http://blog.shaharia.com/twig-and-angularjs-curly-braces-conflict-solution/
 
@@ -66,5 +68,9 @@ und diese Datei einbinden in das Template (base.html.twig) und Namen für die Ap
 ## Ajax in Angular-JS
 
 http://www.java2blog.com/2016/03/angularjs-ajax-example-using-http.html
+
+## AngularJS Demo 
+
+https://material.angularjs.org/latest/demo
 
 
