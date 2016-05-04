@@ -206,3 +206,196 @@ Increase heap size of eclipse, Editieren von php.ini:
 -Xmx2024m
 ```
 
+# Deployen eines Symfony Projektes auf einem frischen Ubuntu 16.06 Server 
+
+##  Installation Software auf Ubuntu Server 
+
+###  vim & git 
+
+sudo apt-get install -y vim git 
+
+
+###  LAMP Installation(PHP5, Apache, MySQL)
+
+* Apache 
+* PHP 
+ 
+Install Apache: 
+```
+sudo apt-get install apache2
+```
+Enable and start Apache: 
+``` 
+systemctl enable apache2
+systemctl start apache2
+systemctl status apache2
+```
+
+Enable apache rewrite modul: 
+
+```
+sudo a2enmod rewrite
+sudo service apache2 restart 
+```
+
+
+### Install PHP 
+
+```
+sudo apt-get install -y php libapache2-mod-php php-pgsql php-xml
+```
+
+###  Install Postgres 
+
+```
+sudo apt-get -y install postgresql 
+```
+
+Postgres Password setzen
+
+```
+sudo -u postgres psql -U postgres -d postgres -c "alter user postgres with password 'hg76tz';"
+```
+
+### Installation MySQL 
+
+```
+sudo apt-get install mysql-server php-mysql
+```
+
+Port: 3306
+
+### Password
+
+Password for root user: hg76tz
+
+
+### Installation Composer 
+
+Nötige Tools für Composer installieren: 
+```
+sudo apt-get install -y curl php-cli git unzip
+```
+
+Composer installieren: 
+
+```
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+Permissions fixen (https://github.com/thomaszbz/native-dockerfiles-typo3/issues/19)
+
+```
+sudo chown -R l-admin /home/l-admin/.composer
+```
+
+### Install NodeJS
+
+```
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
+``` 
+
+### Install less 
+
+```
+sudo npm install -g npm  (to update npm)
+sudo npm install -g less less-plugin-clean-css
+```
+
+## Deployen eines Symfony Projektes
+
+Beispiel Projekt Stagebuilder: https://github.com/sloepfe/stagebuilder.git
+
+Verzeichnis für Projekt anlegen:
+```
+sudo mkdir -p /var/www/stagebuilder
+```
+
+Berechtigung für normalen Unix-Benutzer (hier l-admin) setzen: 
+```
+sudo chown l-admin:l-admin /var/www/stagebuilder
+```
+
+Als Benutzer l-admin das Projekt aus dem Git auschecken:  
+```
+cd /var/www
+git clone https://github.com/sloepfe/stagebuilder.git stagebuilder
+``` 
+
+Im Verzeichnis /var/www/stagebuilder/stagebuilder composer ausführen: 
+
+```
+composer install
+```
+Beim Ausführen des Composer Install werden auch gleich die Datenbank-Parameter angegeben und in das config-file geschrieben. 
+
+
+Datenbank mittels der Console anlegen: 
+
+```
+php bin/console doctrine:database:create
+```
+
+Schema updaten: 
+```
+php bin/console doctrine:schema:update --force
+```
+
+Requirements prüfen: 
+
+```
+php bin/symfony_requirements
+```
+
+### Korrekte File Permissions setzen
+
+acl installieren: 
+
+```
+sudo apt-get install -y acl 
+``` 
+
+Cache leeren: 
+
+```
+l-admin@VIRTSRVIKT04:/var/www/stagebuilder/stagebuilder$ php bin/console cache:clear --env=prod --no-debug
+```
+
+Permissions setzen (hier beschrieben: http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup)
+
+```
+HTTPDUSER=`ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX var
+```
+
+### Apache Konfiguration  
+
+
+In Datei /etc/apache2/sites-available/000-default.conf
+
+```
+<VirtualHost *:80>
+    
+   	DocumentRoot /var/www/html
+    
+    # Alias Stagebuilder
+    Alias /stagebuilder/ /var/www/stagebuilder/stagbuilder/web/
+    <Directory /var/www/stagebuilder/stagbuilder/web>
+       AllowOverride None
+        Order Allow,Deny
+        Allow from All
+
+        <IfModule mod_rewrite.c>
+            Options -MultiViews
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ app.php [QSA,L]
+        </IfModule>
+    </Directory>
+    
+</VirtualHost>
+```
+
+Danach läuft die Applikation unter http://[host/ip]/myrapport/
